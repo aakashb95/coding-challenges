@@ -15,10 +15,11 @@ def count_bytes(content):
     return len(content)
 
 def count_lines(content):
-    return len(str(content).splitlines())
+    print(type(content))
+    return len(content.splitlines())
 
 def count_words(content):
-    return len(str(content).split())
+    return len(content.split())
 
 def count_chars(content):
     return len(content.decode('utf-8-sig')) + 1 # (for Byte Order Mark). Used chardet to check the encoding
