@@ -15,7 +15,6 @@ def count_bytes(content):
     return len(content)
 
 def count_lines(content):
-    print(type(content))
     return len(content.splitlines())
 
 def count_words(content):
