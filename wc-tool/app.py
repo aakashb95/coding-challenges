@@ -8,20 +8,21 @@ parser.add_argument("-c", "--count", action="store_true", help="Count bytes")
 parser.add_argument("-l", "--lines", action="store_true", help="Count lines")
 parser.add_argument("-w", "--words", action="store_true", help="Count words")
 
-def count_bytes(filename):
-    with open(filename, "rb") as f:
+def open_file(filename, mode='r'):
+    with open(filename, mode) as f:
         content = f.read()
+    return content
+
+def count_bytes(filename):
+    content = open_file(filename, mode='rb')
     return len(content)
 
 def count_lines(filename):
-    with open(filename, "r") as f:
-        content = f.read()
+    content = open_file(filename)
     return len(content.splitlines())
 
 def count_words(filename):
-    with open(filename, 'r') as f:
-        content = f.read()
-
+    content = open_file(filename)
     return len(content.split())
 
 if __name__ == "__main__":
