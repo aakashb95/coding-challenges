@@ -31,6 +31,13 @@ def count_chars(filename):
         content = f.read()
     return len(content.decode('utf-8-sig')) + 1 # (for Byte Order Mark). Used chardet to check the encoding
 
+def count_all(filename):
+    return {
+        "counts": count_bytes(filename),
+        "lines": count_lines(filename),
+        "words": count_words(filename)
+    }
+
 if __name__ == "__main__":
     args = parser.parse_args()
     filename = args.filename
@@ -43,3 +50,6 @@ if __name__ == "__main__":
         print(f"{count_words(filename)} {filename}")
     if args.m:
         print(f"{count_chars(filename)} {filename}")
+    else:
+        stats = count_all(filename)
+        print(f"    {stats['lines']}   {stats['words']}  {stats['counts']} {filename}")
